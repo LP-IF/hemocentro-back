@@ -1,6 +1,7 @@
 package com.example.hemocentroapi.model.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,4 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Administrador extends Pessoa{
     private String email;
+
+    @ManyToOne
+    private Hemocentro hemocentro;
 }

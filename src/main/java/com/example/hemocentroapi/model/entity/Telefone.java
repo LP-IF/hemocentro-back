@@ -18,5 +18,8 @@ public class Telefone {
 
     private String numero;
     private String tipo;
+
+    @ManyToOne
+    private Pessoa pessoa;
 }
 

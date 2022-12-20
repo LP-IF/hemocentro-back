@@ -17,9 +17,6 @@ public class Pessoa {
 
     private String Nome;
 
-    @OneToMany
-    private Telefone telefone;
-
     @OneToOne
     private Endereco endereco;
 }

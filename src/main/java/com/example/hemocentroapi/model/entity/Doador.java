@@ -3,6 +3,7 @@ package com.example.hemocentroapi.model.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,9 @@ public class Doador extends Pessoa{
     private String dataNascimento;
     private String cpf;
 
-    @ManyToOne
+    @OneToOne
     private TipoSangue tipoSangue;
+
+    @ManyToOne
+    private Hemocentro hemocentro;
 }

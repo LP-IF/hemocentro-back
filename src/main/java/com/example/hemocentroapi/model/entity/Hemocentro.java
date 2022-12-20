@@ -17,9 +17,4 @@ public class Hemocentro {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToMany
-    private Administrador administrador;
-
-    @OneToMany
-    private Doador doador;
 }

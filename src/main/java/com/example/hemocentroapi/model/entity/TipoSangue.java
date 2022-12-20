@@ -18,9 +18,9 @@ public class TipoSangue {
     private String tipo;
     private Boolean positivo;
 
-    @OneToMany
+    @ManyToOne
     private TipoSangue tipoSangueDeQuemRecebe;
 
-    @OneToMany
+    @ManyToOne
     private TipoSangue tipoSangueParaQuemDoa;
 }
