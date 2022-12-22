@@ -7,6 +7,7 @@ import com.example.hemocentroapi.exception.RegraNegocioException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -21,6 +22,12 @@ public class AdministradorService {
 
     public Optional<Administrador> getAdministradorByEmail(String email) {
         return Optional.ofNullable(repository.findByEmail(email));
+    }
+
+//    public Optional<Administrador> getHemocentroByAdministrador
+
+    public List<Administrador> getAdministradores(){
+       return repository.findAll();
     }
 
     @Transactional
