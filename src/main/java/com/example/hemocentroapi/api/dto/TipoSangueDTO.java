@@ -10,7 +10,7 @@ public class TipoSangueDTO {
     private Long id;
     private String tipo;
     private Boolean positivo;
-    
+    private Integer quantidade;
     private List<TipoSangue> deQuemRecebe;
     private List<TipoSangue> paraQuemDoa;
 

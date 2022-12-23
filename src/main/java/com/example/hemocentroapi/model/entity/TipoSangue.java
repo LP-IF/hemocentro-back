@@ -17,6 +17,7 @@ public class TipoSangue {
 
     private String tipo;
     private Boolean positivo;
+    private Integer quantidade;
 
     @ManyToOne
     private TipoSangue tipoSangueDeQuemRecebe;
