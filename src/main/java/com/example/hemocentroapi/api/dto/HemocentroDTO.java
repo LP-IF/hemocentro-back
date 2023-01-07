@@ -6,7 +6,14 @@ import com.example.hemocentroapi.model.entity.Hemocentro;
 import org.modelmapper.ModelMapper;
 
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class HemocentroDTO {
     
     private Long id;

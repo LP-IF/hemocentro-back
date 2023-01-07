@@ -3,7 +3,15 @@ package com.example.hemocentroapi.api.dto;
 
 import com.example.hemocentroapi.model.entity.Doador;
 import com.example.hemocentroapi.model.entity.TipoSangue;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class DoadorDTO {
     private Long id;

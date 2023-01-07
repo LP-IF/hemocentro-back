@@ -5,7 +5,14 @@ import com.example.hemocentroapi.model.entity.TipoSangue;
 import org.modelmapper.ModelMapper;
 
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class TipoSangueDTO {
     private Long id;
     private String tipo;

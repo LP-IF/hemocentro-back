@@ -24,11 +24,17 @@ public class AdministradorService {
         return Optional.ofNullable(repository.findByEmail(email));
     }
 
+    public Optional<Administrador> getAdministradorById(Long id){
+        return repository.findById(id);
+    }
+
 //    public Optional<Administrador> getHemocentroByAdministrador
 
     public List<Administrador> getAdministradores(){
        return repository.findAll();
     }
+
+//    public Optional<Administrador> verificaSeJáExiste
 
     @Transactional
     public Administrador salvar(Administrador administrador) {
