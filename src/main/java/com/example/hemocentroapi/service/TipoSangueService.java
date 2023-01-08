@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class TipoSangueService {
 
@@ -18,10 +19,15 @@ public class TipoSangueService {
         return repository.findAll();
     }
 
-    public List<TipoSangue> getQuantidadeTipoSangue(Long idTipoSangue) {
-        return repository.getQuantidadeById(idTipoSangue);
+//    public List<TipoSangue> getQuantidadeTipoSangue(Long idTipoSangue) {
+//        return repository.getQuantidadeById(idTipoSangue);
+//    }
+    public Optional<TipoSangue> getTipoSangueById(Long id){
+        return repository.findById(id);
     }
 
+
+    //fazer metodo e logica para retornar a quantidade de cada tipo de sangue no banco de sangue
     //FAZER METODO PARA RETORNAR QUAIS TIPOS O TIPO SANGUINEO PODE DOAR E DE QUEM PODE RECEBER
 
     @Transactional
