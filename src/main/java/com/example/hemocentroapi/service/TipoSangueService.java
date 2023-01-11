@@ -3,12 +3,14 @@ package com.example.hemocentroapi.service;
 import com.example.hemocentroapi.exception.RegraNegocioException;
 import com.example.hemocentroapi.model.entity.TipoSangue;
 import com.example.hemocentroapi.model.repository.TipoSangueRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Service
 public class TipoSangueService {
 
     private TipoSangueRepository repository;
