@@ -32,13 +32,26 @@ public class AdministradorController {
         return ResponseEntity.ok(administradores.stream().map(AdministradorDTO::create).collect(Collectors.toList()));
     }
 
-    @GetMapping("/{id}")
+//    @GetMapping("/{id}")
+//    @ApiOperation("Obter detalhes de um administrador")
+//    @ApiResponses({
+//            @ApiResponse(code = 200, message = "Administrador encontrado"),
+//            @ApiResponse(code = 404, message = "Administrador não encontrado")})
+//    public ResponseEntity get(@PathVariable("id") @ApiParam("id do Administrador") Long id) {
+//        Optional<Administrador> administrador = service.getAdministradorById(id);
+//        if (!administrador.isPresent()) {
+//            return new ResponseEntity("Administrador não encontrado", HttpStatus.NOT_FOUND);
+//        }
+//        return ResponseEntity.ok(administrador.map(AdministradorDTO::create));
+//    }
+
+    @GetMapping("/{email}")
     @ApiOperation("Obter detalhes de um administrador")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Administrador encontrado"),
             @ApiResponse(code = 404, message = "Administrador não encontrado")})
-    public ResponseEntity get(@PathVariable("id") @ApiParam("id do Administrador") Long id) {
-        Optional<Administrador> administrador = service.getAdministradorById(id);
+    public ResponseEntity get(@PathVariable("email") @ApiParam("email do Administrador") String email) {
+        Optional<Administrador> administrador = service.getAdministradorByEmail(email);
         if (!administrador.isPresent()) {
             return new ResponseEntity("Administrador não encontrado", HttpStatus.NOT_FOUND);
         }

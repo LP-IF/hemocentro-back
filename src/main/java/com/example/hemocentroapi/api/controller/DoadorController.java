@@ -33,18 +33,32 @@ public class DoadorController {
         return ResponseEntity.ok(doadores.stream().map(DoadorDTO::create).collect(Collectors.toList()));
     }
 
-    @GetMapping("/{id}")
+//    @GetMapping("/{id}")
+//    @ApiOperation("Obter detalhes de um doador")
+//    @ApiResponses({
+//            @ApiResponse(code = 200, message = "Doador encontrado"),
+//            @ApiResponse(code = 404, message = "Doador não encontrado")})
+//    public ResponseEntity get(@PathVariable("id") @ApiParam("id do Doador") Long id) {
+//        Optional<Doador> doador = service.getDoadorById(id);
+//        if (!doador.isPresent()) {
+//            return new ResponseEntity("Doador não encontrado", HttpStatus.NOT_FOUND);
+//        }
+//        return ResponseEntity.ok(doador.map(DoadorDTO::create));
+//    }
+
+    @GetMapping("/{cpf}")
     @ApiOperation("Obter detalhes de um doador")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Doador encontrado"),
             @ApiResponse(code = 404, message = "Doador não encontrado")})
-    public ResponseEntity get(@PathVariable("id") @ApiParam("id do Doador") Long id) {
-        Optional<Doador> doador = service.getDoadorById(id);
+    public ResponseEntity get(@PathVariable("cpf") @ApiParam("cpf do Doador") String cpf) {
+        Optional<Doador> doador = service.getDoadorByCpf(cpf);
         if (!doador.isPresent()) {
             return new ResponseEntity("Doador não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(doador.map(DoadorDTO::create));
     }
+
 
     @PostMapping()
     @ApiOperation("Salvar um doador")
