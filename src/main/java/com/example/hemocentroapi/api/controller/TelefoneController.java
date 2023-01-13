@@ -24,7 +24,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/enderecos")
+@RequestMapping("/api/telefones")
 @RequiredArgsConstructor
 public class TelefoneController {
     private final TelefoneService service;
