@@ -9,6 +9,7 @@ import com.example.hemocentroapi.model.entity.Endereco;
 import com.example.hemocentroapi.model.entity.Telefone;
 import com.example.hemocentroapi.service.AdministradorService;
 import com.example.hemocentroapi.service.EnderecoService;
+import com.example.hemocentroapi.service.TelefoneService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -23,10 +24,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/enderecos")
+@RequestMapping("/api/telefones")
 @RequiredArgsConstructor
-public class EnderecoController {
-    private final EnderecoService service;
+public class TelefoneController {
+    private final TelefoneService service;
 
 
     @PostMapping()
