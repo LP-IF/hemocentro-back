@@ -66,7 +66,7 @@ public class DoadorController {
     @ApiResponses({
             @ApiResponse(code = 201, message = "Doador criado com sucesso"),
             @ApiResponse(code = 400, message = "Erro ao salvar doador")})
-    public ResponseEntity post(DoadorDTO dto) {
+    public ResponseEntity post(@RequestBody DoadorDTO dto) {
         try {
             Doador doador = converter(dto);
             doador = service.salvar(doador);
@@ -118,9 +118,11 @@ public class DoadorController {
         Doador doador = new Doador();
         doador.setId(dto.getId());
         doador.setNome(dto.getNome());
+        doador.setEndereco(dto.getEndereco());
         doador.setDataNascimento(dto.getDataNascimento());
         doador.setCpf(dto.getCpf());
         doador.setTipoSangue(dto.getTipoSanguineo());
+        doador.setHemocentro(dto.getHemocentro());
         return doador;
     }
 }
