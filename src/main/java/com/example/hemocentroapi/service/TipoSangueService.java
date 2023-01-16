@@ -45,7 +45,7 @@ public class TipoSangueService {
         if (tipoSangue.getTipo() == null || tipoSangue.getTipo().trim().equals("")) {
             throw new RegraNegocioException("Tipo inválido");
         }
-        if (tipoSangue.getPositivo() == null) {
+        if (tipoSangue.getFatorRh().trim().equals("")) {
             throw new RegraNegocioException("Fator RH inválido");
         }
     }

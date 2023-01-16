@@ -16,14 +16,12 @@ import lombok.NoArgsConstructor;
 public class TipoSangueDTO {
     private Long id;
     private String tipo;
-    private Boolean positivo;
+    private String fatorRh;
     private Integer quantidade;
 
     public static TipoSangueDTO create(TipoSangue TipoSangue){
         ModelMapper modelMapper = new ModelMapper();
         TipoSangueDTO dto = modelMapper.map(TipoSangue, TipoSangueDTO.class);
-//        dto.deQuemRecebe = TipoSangue.getTipoSangueDeQuemRecebe(); //perguntar ao prof como faz
-//        dto.paraQuemDoa = TipoSangue.getTipoSangueParaQuemDoa(); //perguntar ao prof como faz
         return dto;
     }
 }

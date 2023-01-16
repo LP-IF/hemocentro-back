@@ -18,7 +18,7 @@ public class TipoSangue {
     private Long id;
 
     private String tipo;
-    private Boolean positivo;
+    private String fatorRh;
     private Integer quantidade;
 
     @ManyToMany
