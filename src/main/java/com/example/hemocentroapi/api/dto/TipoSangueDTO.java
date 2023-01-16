@@ -18,8 +18,6 @@ public class TipoSangueDTO {
     private String tipo;
     private Boolean positivo;
     private Integer quantidade;
-    private List<TipoSangue> deQuemRecebe;
-    private List<TipoSangue> paraQuemDoa;
 
     public static TipoSangueDTO create(TipoSangue TipoSangue){
         ModelMapper modelMapper = new ModelMapper();

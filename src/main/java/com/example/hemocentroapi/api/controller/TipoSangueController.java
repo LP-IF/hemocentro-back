@@ -62,6 +62,40 @@ public class TipoSangueController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+//    @PatchMapping("{id}")
+//    @ApiOperation("Incremendar em 1 a quantidade de um tipoSangue")
+//    @ApiResponses({
+//            @ApiResponse(code = 201, message = "quantidade de tipoSangue alterada com sucesso"),
+//            @ApiResponse(code = 400, message = "Erro ao alterar a quantidade de tipoSangue")})
+//    public ResponseEntity<TipoSangue> incrementarQuantidade(@PathVariable Long id) {
+//        TipoSangue tipoSangue = service.getTipoSangueById(id).orElseThrow(() -> new RegraNegocioException("Tipo de Sangue não encontrado com id " + id));
+//        tipoSangue.setQuantidade(tipoSangue.getQuantidade() + 1);
+//        TipoSangue atualizado = service.salvar(tipoSangue);
+//        return ResponseEntity.ok(atualizado);
+//    }
+
+    @PatchMapping("{id}")
+    @ApiOperation("Incrementar em 1 a quantidade de um tipoSangue")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "quantidade de tipoSangue alterada com sucesso"),
+            @ApiResponse(code = 404, message = "Tipo de Sangue não encontrado com id fornecido"),
+            @ApiResponse(code = 400, message = "Erro ao alterar a quantidade de tipoSangue")
+    })
+    public ResponseEntity<TipoSangue> incrementarQuantidade(@PathVariable Long id) {
+        Optional<TipoSangue> optionalTipoSangue = service.getTipoSangueById(id);
+        if (!optionalTipoSangue.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        TipoSangue tipoSangue = optionalTipoSangue.get();
+        tipoSangue.setQuantidade(tipoSangue.getQuantidade() + 1);
+        try {
+            TipoSangue atualizado = service.salvar(tipoSangue);
+            return ResponseEntity.ok(atualizado);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 
     @PutMapping("{id}")
     @ApiOperation("Alterar um tipoSangue")
@@ -100,6 +134,13 @@ public class TipoSangueController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+//    @GetMapping("/categorias/{id}")
+//    public ResponseEntity<Categoria> getCategoria(@PathVariable Long id) {
+//        Categoria categoria = categoriaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Categoria não encontrada com id " + id));
+//        return ResponseEntity.ok().body(categoria);
+//    }
+
 
     public TipoSangue converter(TipoSangueDTO dto) {
         TipoSangue tipoSangue = new TipoSangue();

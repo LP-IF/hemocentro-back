@@ -21,9 +21,6 @@ public class TipoSangueService {
         return repository.findAll();
     }
 
-//    public List<TipoSangue> getQuantidadeTipoSangue(Long idTipoSangue) {
-//        return repository.getQuantidadeById(idTipoSangue);
-//    }
     public Optional<TipoSangue> getTipoSangueById(Long id){
         return repository.findById(id);
     }
