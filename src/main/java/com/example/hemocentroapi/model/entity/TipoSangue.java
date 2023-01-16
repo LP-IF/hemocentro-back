@@ -1,5 +1,6 @@
 package com.example.hemocentroapi.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,12 +22,14 @@ public class TipoSangue {
     private String fatorRh;
     private Integer quantidade;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "de_quem_recebe",
             joinColumns = @JoinColumn(name = "tipo_sangue_id"),
             inverseJoinColumns = @JoinColumn(name = "recebe_id"))
     private List<TipoSangue> deQuemRecebe;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "para_quem_doa",
             joinColumns = @JoinColumn(name = "tipo_sangue_id"),

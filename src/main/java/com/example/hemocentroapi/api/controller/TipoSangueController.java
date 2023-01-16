@@ -81,20 +81,21 @@ public class TipoSangueController {
             @ApiResponse(code = 404, message = "Tipo de Sangue não encontrado com id fornecido"),
             @ApiResponse(code = 400, message = "Erro ao alterar a quantidade de tipoSangue")
     })
-    public ResponseEntity<TipoSangue> incrementarQuantidade(@PathVariable Long id) {
-        Optional<TipoSangue> optionalTipoSangue = service.getTipoSangueById(id);
-        if (!optionalTipoSangue.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-        TipoSangue tipoSangue = optionalTipoSangue.get();
-        tipoSangue.setQuantidade(tipoSangue.getQuantidade() + 1);
+    public ResponseEntity incrementarQuantidade(@PathVariable Long id) {
         try {
+            Optional<TipoSangue> optionalTipoSangue = service.getTipoSangueById(id);
+            if (!optionalTipoSangue.isPresent()) {
+                return ResponseEntity.notFound().build();
+            }
+            TipoSangue tipoSangue = optionalTipoSangue.get();
+            tipoSangue.setQuantidade(tipoSangue.getQuantidade() + 1);
             TipoSangue atualizado = service.salvar(tipoSangue);
             return ResponseEntity.ok(atualizado);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 
 
     @PutMapping("{id}")
