@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,9 +21,15 @@ public class TipoSangue {
     private Boolean positivo;
     private Integer quantidade;
 
-    @ManyToOne
-    private TipoSangue tipoSangueDeQuemRecebe;
+    @ManyToMany
+    @JoinTable(name = "de_quem_recebe",
+            joinColumns = @JoinColumn(name = "tipo_sangue_id"),
+            inverseJoinColumns = @JoinColumn(name = "recebe_id"))
+    private List<TipoSangue> deQuemRecebe;
 
-    @ManyToOne
-    private TipoSangue tipoSangueParaQuemDoa;
+    @ManyToMany
+    @JoinTable(name = "para_quem_doa",
+            joinColumns = @JoinColumn(name = "tipo_sangue_id"),
+            inverseJoinColumns = @JoinColumn(name = "doa_id"))
+    private List<TipoSangue> paraQuemDoa;
 }
