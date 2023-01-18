@@ -3,6 +3,7 @@ package com.example.hemocentroapi.api.controller;
 import com.example.hemocentroapi.api.dto.DoadorDTO;
 import com.example.hemocentroapi.exception.RegraNegocioException;
 import com.example.hemocentroapi.model.entity.Doador;
+import com.example.hemocentroapi.model.entity.TipoSangue;
 import com.example.hemocentroapi.service.DoadorService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -34,18 +35,7 @@ public class DoadorController {
         return ResponseEntity.ok(doadores.stream().map(DoadorDTO::create).collect(Collectors.toList()));
     }
 
-//    @GetMapping("/{id}")
-//    @ApiOperation("Obter detalhes de um doador")
-//    @ApiResponses({
-//            @ApiResponse(code = 200, message = "Doador encontrado"),
-//            @ApiResponse(code = 404, message = "Doador não encontrado")})
-//    public ResponseEntity get(@PathVariable("id") @ApiParam("id do Doador") Long id) {
-//        Optional<Doador> doador = service.getDoadorById(id);
-//        if (!doador.isPresent()) {
-//            return new ResponseEntity("Doador não encontrado", HttpStatus.NOT_FOUND);
-//        }
-//        return ResponseEntity.ok(doador.map(DoadorDTO::create));
-//    }
+    
 
     @GetMapping("/{cpf}")
     @ApiOperation("Obter detalhes de um doador")
@@ -61,12 +51,13 @@ public class DoadorController {
     }
 
 
+
     @PostMapping()
     @ApiOperation("Salvar um doador")
     @ApiResponses({
             @ApiResponse(code = 201, message = "Doador criado com sucesso"),
             @ApiResponse(code = 400, message = "Erro ao salvar doador")})
-    public ResponseEntity post(@RequestBody DoadorDTO dto) {
+    public ResponseEntity post(DoadorDTO dto) {
         try {
             Doador doador = converter(dto);
             doador = service.salvar(doador);
@@ -121,7 +112,7 @@ public class DoadorController {
         doador.setEndereco(dto.getEndereco());
         doador.setDataNascimento(dto.getDataNascimento());
         doador.setCpf(dto.getCpf());
-        doador.setTipoSangue(dto.getTipoSanguineo());
+        doador.setTipoSangue(dto.getTipoSangueId());
         doador.setHemocentro(dto.getHemocentro());
         return doador;
     }

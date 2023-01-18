@@ -62,17 +62,6 @@ public class TipoSangueController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-//    @PatchMapping("{id}")
-//    @ApiOperation("Incremendar em 1 a quantidade de um tipoSangue")
-//    @ApiResponses({
-//            @ApiResponse(code = 201, message = "quantidade de tipoSangue alterada com sucesso"),
-//            @ApiResponse(code = 400, message = "Erro ao alterar a quantidade de tipoSangue")})
-//    public ResponseEntity<TipoSangue> incrementarQuantidade(@PathVariable Long id) {
-//        TipoSangue tipoSangue = service.getTipoSangueById(id).orElseThrow(() -> new RegraNegocioException("Tipo de Sangue não encontrado com id " + id));
-//        tipoSangue.setQuantidade(tipoSangue.getQuantidade() + 1);
-//        TipoSangue atualizado = service.salvar(tipoSangue);
-//        return ResponseEntity.ok(atualizado);
-//    }
 
     @PatchMapping("{id}")
     @ApiOperation("Incrementar em 1 a quantidade de um tipoSangue")
@@ -95,7 +84,6 @@ public class TipoSangueController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
 
 
     @PutMapping("{id}")

@@ -20,14 +20,14 @@ public class DoadorDTO {
     private String dataNascimento;
     private String cpf;
     private String nome;
-    private TipoSangue tipoSanguineo;
+    private TipoSangue tipoSangueId;
     private Endereco endereco;
     private Hemocentro hemocentro;
 
     public static DoadorDTO create(Doador doador){
         ModelMapper modelMapper = new ModelMapper();
         DoadorDTO dto = modelMapper.map(doador, DoadorDTO.class);
-        dto.tipoSanguineo = doador.getTipoSangue();
+        dto.tipoSangueId = doador.getTipoSangue();
         dto.endereco = doador.getEndereco();
         dto.hemocentro = doador.getHemocentro();
         return dto;
