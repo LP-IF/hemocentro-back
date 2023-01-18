@@ -51,6 +51,27 @@ public class DoadorController {
     }
 
 
+    @PatchMapping("{cpf}")
+    @ApiOperation("Incrementar em 1 a quantidade de um tipoSangue")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "quantidade de tipoSangue alterada com sucesso"),
+            @ApiResponse(code = 404, message = "Tipo de Sangue não encontrado com id fornecido"),
+            @ApiResponse(code = 400, message = "Erro ao alterar a quantidade de tipoSangue")
+    })
+    public ResponseEntity incrementarQuantidade(@PathVariable String cpf) {
+        try {
+            Optional<Doador> optionalDoador = service.getDoadorByCpf(cpf);
+            if (!optionalDoador.isPresent()) {
+                return ResponseEntity.notFound().build();
+            }
+            Doador doador = optionalDoador.get();
+            doador.setQuantidadeDoacoes(doador.getQuantidadeDoacoes() + 1);
+            Doador atualizado = service.salvar(doador);
+            return ResponseEntity.ok(atualizado);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
     @PostMapping()
     @ApiOperation("Salvar um doador")

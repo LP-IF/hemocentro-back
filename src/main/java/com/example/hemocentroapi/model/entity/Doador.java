@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class Doador extends Pessoa{
     private String dataNascimento;
     private String cpf;
+    private Integer quantidadeDoacoes = 0;
 
     @OneToOne
     private TipoSangue tipoSangue;

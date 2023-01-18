@@ -20,6 +20,7 @@ public class DoadorDTO {
     private String dataNascimento;
     private String cpf;
     private String nome;
+    private Integer quantidadeDoacoes;
     private TipoSangue tipoSangueId;
     private Endereco endereco;
     private Hemocentro hemocentro;
