@@ -141,7 +141,7 @@ public class DoadorController {
                 doador.setTipoSangue(null);
             } else {
                 doador.setTipoSangue(tipoSangue.get());
-            } 
+            }
         }
         return doador;
     }
