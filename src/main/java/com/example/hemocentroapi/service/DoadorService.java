@@ -29,7 +29,6 @@ public class DoadorService {
 
     public Optional<Doador> getDoadorById(Long id) { return repository.findById(id);}
 
-
     @Transactional
     public Doador salvar(Doador doador) {
         validar(doador);
@@ -43,8 +42,11 @@ public class DoadorService {
     }
 
     public void validar(Doador doador) {
-        if (doador.getCpf() == null || doador.getCpf().trim().equals("")) {
+        if (doador.getCpf() == null || doador.getCpf().trim().equals("")){
             throw new RegraNegocioException("CPF inválido");
+        }
+        if(repository.existsByCpf(doador.getCpf())){
+            throw new IllegalArgumentException("Já existe um doador com este CPF");
         }
     }
 
