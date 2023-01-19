@@ -15,17 +15,17 @@ import static org.mockito.Mockito.*;
 public class AdministradorServiceTest {
 
     @Test
-    public void testeEmailInvalido(){
+    public void testarEmailInvalido(){
+        try{
+            Administrador administradorMock = createMock(Administrador.class);
+            AdministradorService administradorserviceMock = createMock(AdministradorService.class);
+            administradorserviceMock.validar(administradorMock);
+            fail();
+        }
 
-        Administrador administradorMock = createMock(Administrador.class);
-        administradorMock.setEmail("");
-
-        AdministradorService administradorServiceMock = createMock(AdministradorService.class);
-
-        doThrow(RegraNegocioException.class).when(administradorServiceMock).validar(administradorMock);
-
-
-
+        catch (RegraNegocioException e){
+            assertEquals("Email inválido", e.getMessage());
+        }
 
 
 

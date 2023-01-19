@@ -21,13 +21,13 @@ public class DoadorDTO {
     private String cpf;
     private String nome;
     private Integer quantidadeDoacoes;
-    private TipoSangue tipoSangueId;
+    private Long tipoSangueId;
     private Endereco endereco;
 
     public static DoadorDTO create(Doador doador){
         ModelMapper modelMapper = new ModelMapper();
         DoadorDTO dto = modelMapper.map(doador, DoadorDTO.class);
-        dto.tipoSangueId = doador.getTipoSangue();
+        dto.tipoSangueId = doador.getTipoSangue().getId();
         dto.endereco = doador.getEndereco();
         return dto;
     }

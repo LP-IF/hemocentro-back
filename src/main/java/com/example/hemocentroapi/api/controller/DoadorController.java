@@ -5,6 +5,7 @@ import com.example.hemocentroapi.exception.RegraNegocioException;
 import com.example.hemocentroapi.model.entity.Doador;
 import com.example.hemocentroapi.model.entity.TipoSangue;
 import com.example.hemocentroapi.service.DoadorService;
+import com.example.hemocentroapi.service.TipoSangueService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DoadorController {
     private final DoadorService service;
+    private final TipoSangueService tipoSangueService;
 
     @GetMapping()
     @ApiOperation("Obter todos os doadores")
@@ -133,7 +135,14 @@ public class DoadorController {
         doador.setEndereco(dto.getEndereco());
         doador.setDataNascimento(dto.getDataNascimento());
         doador.setCpf(dto.getCpf());
-        doador.setTipoSangue(dto.getTipoSangueId());
+        if (dto.getTipoSangueId() != null) {
+            Optional<TipoSangue> tipoSangue = tipoSangueService.getTipoSangueById((dto.getTipoSangueId()));
+            if (!tipoSangue.isPresent()) {
+                doador.setTipoSangue(null);
+            } else {
+                doador.setTipoSangue(tipoSangue.get());
+            } 
+        }
         return doador;
     }
 }
