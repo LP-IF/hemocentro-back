@@ -31,7 +31,18 @@ public class DoadorService {
 
     @Transactional
     public Doador salvar(Doador doador) {
+        System.out.println("f1");
+        System.out.println(doador);
         validar(doador);
+        System.out.println("f2");
+        return repository.save(doador);
+    }
+    @Transactional
+    public Doador atualizar(Doador doador) {
+        Optional<Doador> optionalDoador = Optional.ofNullable(repository.findByCpf(doador.getCpf()));
+        if (optionalDoador.isPresent() && !optionalDoador.get().getId().equals(doador.getId())) {
+            throw new RegraNegocioException("Já existe um doador com esse CPF");
+        }
         return repository.save(doador);
     }
 
@@ -42,10 +53,14 @@ public class DoadorService {
     }
 
     public void validar(Doador doador) {
+        System.out.println("a1");
         if (doador.getCpf() == null || doador.getCpf().trim().equals("")){
+            System.out.println("Q");
             throw new RegraNegocioException("CPF inválido");
         }
+        System.out.println("a2");
         if(repository.existsByCpf(doador.getCpf())){
+            System.out.println("Q1");
             throw new IllegalArgumentException("Já existe um doador com este CPF");
         }
     }

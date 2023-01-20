@@ -53,6 +53,35 @@ public class DoadorController {
     }
 
 
+//    @PatchMapping("{cpf}")
+//    @ApiOperation("Incrementar em 1 a quantidade de um tipoSangue")
+//    @ApiResponses({
+//            @ApiResponse(code = 200, message = "quantidade de tipoSangue alterada com sucesso"),
+//            @ApiResponse(code = 404, message = "Tipo de Sangue não encontrado com id fornecido"),
+//            @ApiResponse(code = 400, message = "Erro ao alterar a quantidade de tipoSangue")
+//    })
+//    public ResponseEntity incrementarQuantidade(@PathVariable String cpf) {
+//        System.out.println("9");
+//        try {
+//            Optional<Doador> optionalDoador = service.getDoadorByCpf(cpf);
+//            System.out.println("a");
+//            if (!optionalDoador.isPresent()) {
+//                System.out.println("b");
+//                return ResponseEntity.notFound().build();
+//            }
+//            Doador doador = optionalDoador.get();
+//            System.out.println("c");
+//            doador.setQuantidadeDoacoes(doador.getQuantidadeDoacoes() + 1);
+//            System.out.println("d");
+//            Doador atualizado = service.salvar(doador);
+//            return ResponseEntity.ok(atualizado);
+//        } catch (RegraNegocioException e) {
+//            System.out.println("f");
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
+
+
     @PatchMapping("{cpf}")
     @ApiOperation("Incrementar em 1 a quantidade de um tipoSangue")
     @ApiResponses({
@@ -68,7 +97,7 @@ public class DoadorController {
             }
             Doador doador = optionalDoador.get();
             doador.setQuantidadeDoacoes(doador.getQuantidadeDoacoes() + 1);
-            Doador atualizado = service.salvar(doador);
+            Doador atualizado = service.atualizar(doador);
             return ResponseEntity.ok(atualizado);
         } catch (RegraNegocioException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -82,8 +111,11 @@ public class DoadorController {
             @ApiResponse(code = 400, message = "Erro ao salvar doador")})
     public ResponseEntity post(@RequestBody DoadorDTO dto) {
         try {
+            System.out.println("1");
             Doador doador = converter(dto);
+            System.out.println("2");
             doador = service.salvar(doador);
+            System.out.println("3");
             return new ResponseEntity(doador, HttpStatus.CREATED);
         } catch (RegraNegocioException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -132,8 +164,8 @@ public class DoadorController {
         Doador doador = new Doador();
         doador.setId(dto.getId());
         doador.setNome(dto.getNome());
-        doador.setEndereco(dto.getEndereco());
         doador.setDataNascimento(dto.getDataNascimento());
+        doador.setEndereco(dto.getEndereco());
         doador.setCpf(dto.getCpf());
         if (dto.getTipoSangueId() != null) {
             Optional<TipoSangue> tipoSangue = tipoSangueService.getTipoSangueById((dto.getTipoSangueId()));
