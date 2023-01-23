@@ -53,14 +53,10 @@ public class DoadorService {
     }
 
     public void validar(Doador doador) {
-        System.out.println("a1");
         if (doador.getCpf() == null || doador.getCpf().trim().equals("")){
-            System.out.println("Q");
             throw new RegraNegocioException("CPF inválido");
         }
-        System.out.println("a2");
         if(repository.existsByCpf(doador.getCpf())){
-            System.out.println("Q1");
             throw new IllegalArgumentException("Já existe um doador com este CPF");
         }
     }
